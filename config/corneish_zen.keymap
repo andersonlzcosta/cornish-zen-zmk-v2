@@ -9,10 +9,10 @@
 
 / {
       conditional_layers {
-         compatible = "zmk,behavior-layers";
+         compatible = "zmk,conditional-layers";
          tri_layer {
             if-layers = <RAISE LOWER>;
-            then = <MID>;
+            then-layer = <MID>;
          };
       };
 };
@@ -30,13 +30,11 @@
 
          default_layer {
                label = "BASE";
-//  ______________________________________________________________________________________________
-// |   TAB |   Q  |   W  |   E  |   R  |   T    |   |   Y  |   U   |   I  |   O  |   P  |   =    |
-// |   SHFT  |   A  |   S  |   D  |   F  |   G  |   |   H  |   J   |   K  |   L  |   ;    |   '  |
-// |   CTRL  |   Z  |   X  |   C  |   V  |   B  |   |   N  |   M   |   ,      |   .   |   ESC |   /   |
-//                  |   GUI  |   LOWER  |  SPC  |   | ENT   |   RAISE  |   BKSP
-// |__________________________________________________________________________________________________|
-               bindings = <
+// |     TAB    |      Q     |     W     |     E     |      R     |      T     |  |      Y      |      U      |      I     |     O      |     P      |      =     |
+// |     SHFT   |      A     |     S     |     D     |      F     |      G     |  |      H      |      J      |      K     |     L      |     ;      |      '     |
+// |     CTRL   |      Z     |     X     |     C     |      V     |      B     |  |      N      |      M      |      ,     |     .      |     ESC    |      /     |
+//                                       |     GUI   |      LOWER |      SPC   |  |      ENT    |      RAISE  |      BKSP  |
+               bindings = < 
    &kp TAB &kp Q  &kp W  &kp E  &kp R  &kp T        &kp Y  &kp U   &kp I  &kp O  &kp P  &kp EQUAL
    &kp LSHFT &kp A  &kp S  &kp D  &kp F  &kp G      &kp H  &kp J   &kp K  &kp L  &kp SEMI &kp SQT
    &kp LCTRL &kp Z  &kp X  &kp C  &kp V  &kp B      &kp N  &kp M   &kp COMMA  &kp DOT &kp ESC &kp FSLH
@@ -46,28 +44,24 @@
 
          raise_layer {
                label = "RAISE";
-//  ______________________________________________________________________________________________
-// |      |   !     |   @   |   #     |   $     |   %     |      |   ¨      |   &     |   *     |   (     |   )     |     |
-// |      |   1     |  2    |   3   |   4  |   5  |              |   6   |   7  |   8  |   9  |   0  |     |
-// |      |      |      |      |   `     |   \    |              |   ;   |   -     |   '  |   [    |   ]    |     |
-//                  |   GUI  |      |      |                     |      |      |     |
-// |__________________________________________________________________________________________________|
+// |            |      !     |      @     |      #     |      $     |     %     |  |      ¨      |      &     |      *     |      (     |      )     |            |
+// |            |      1     |      2     |      3     |      4     |     5     |  |      6      |      7     |      8     |      9     |      0     |            |
+// |            |            |            |            |      `     |     \     |  |      ;      |      -     |      '     |      [     |      ]     |            |
+//                                        |      GUI   |            |           |  |             |            |            |
                bindings = <
-   &trans &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT        &kp CARET  &kp AMPS  &kp STAR  &kp LPAR  &kp RPAR  &trans
-   &trans &kp N1    &kp N2  &kp N3  &kp N4 &kp N5                &kp N6  &kp N7 &kp N8 &kp N9 &kp N0 &trans
-   &trans &trans &trans &trans &kp GRAVE &kp BSLH                &kp SEMI  &kp MINUS &kp SQT &kp LBKT &kp RBKT &trans
-                    &kp RGUI &trans &trans                       &trans &trans &trans 
+   &trans &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT                       &kp CARET  &kp AMPS  &kp STAR  &kp LPAR  &kp RPAR  &trans
+   &trans &kp N1    &kp N2  &kp N3  &kp N4 &kp N5                               &kp N6  &kp N7 &kp N8 &kp N9 &kp N0 &trans
+   &trans &trans &trans &trans &kp GRAVE &kp BSLH                               &kp SEMI  &kp MINUS &kp SQT &kp LBKT &kp RBKT &trans
+                    &kp RGUI &trans &trans                                      &trans &trans &trans 
                         >;
                 };
 
          lower_layer {
                label = "LOWER";
-//  ______________________________________________________________________________________________
-// |   F1    |   F2      |   F3      |   F4      |   F5      |   F6  |            |   F7    |   F8     |   F9     |   F10    |   F11  |   F12        |
-// |   PREV  |   STOP    |   PLAY/PAUSE  |   NEXT    |   VOL+      |   VOL-    |    |   LFT   |   DWN    |   UP     |   RGT    |        |   PSCRN      |
-// |         |           |                   |      |      |   MUTE    |                                   |   HOME  |   PGDWN  |   PGUP   |   END    |        |              |
-//                                                |      |      |      |              |         |      |   DEL |     
-// |__________________________________________________________________________________________________|
+// |     F1     |     F2     |     F3     |     F4     |     F5     |     F6     |  |     F7     |     F8     |     F9     |     F10    |     F11    |    F12     |
+// |     PREV   |    STOP    | PLAY/PAUSE |    NEXT    |    VOL+    |    VOL-    |  |     LFT    |     DWN    |     UP     |     RGT    |            |   PSCRN    |
+// |            |            |            |            |            |    MUTE    |  |     HOME   |     PGDWN  |     PGUP   |     END    |            |            |
+//                                        |            |            |            |  |            |            |     DEL    |
                bindings = <
    &kp F1       &kp F2       &kp F3      &kp F4      &kp F5      &kp F6               &kp F7   &kp F8   &kp F9  &kp F10  &kp F11  &kp F12  
    &kp C_PREV  &kp C_STOP  &kp C_PP        &kp C_NEXT  &kp C_VOL_UP  &kp C_VOL_DN     &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &trans   &kp PRINTSCREEN
@@ -78,12 +72,10 @@
 
          mid_layer {
                label = "MID";
-//  ______________________________________________________________________________________________
-// |   BTCLR      |   BT1  |   BT2      |   BT3      |   BT4      |   BT5     |    |       |       |       |       |       |      |
-// |      |      |      |      |      |       |                                    |       |       |       |       |       |      |
-// |      |      |      |   NUMLCK   |   SCRLCK   |   CAPSLCK   |                  |       |   APPMENU  |       |       |       |      |
-//                                  |      |      |      |                         |      |      |     |
-// |__________________________________________________________________________________________________|
+// |   BTCLR    |     BT1    |     BT2    |     BT3    |     BT4    |     BT5    |  |            |            |            |            |            |            |
+// |            |            |            |            |            |            |  |            |            |            |            |            |            |
+// |            |            |            |   NUMLCK   |   SCRLCK   |   CAPSLCK  |  |            |   APPMENU  |            |            |            |            |
+//                                        |            |            |            |  |            |            |            |
                bindings = <
    &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4     &trans  &trans  &trans  &trans  &trans  &trans
    &trans &trans &trans &trans &trans &trans                                       &trans  &trans  &trans  &trans  &trans  &trans
